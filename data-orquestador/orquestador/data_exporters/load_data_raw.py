@@ -71,7 +71,7 @@ def export_data_to_postgres(urls, **kwargs) -> None:
             
         except Exception as e:
             import traceback
-            print(f"❌ Error crítico al procesar {url}:")
+            print(f"   Error crítico al procesar {url}:")
             print(f"   Tipo: {type(e).__name__}")
             print(f"   Mensaje: {e}")
             print(f"   Traceback completo:")
