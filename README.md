@@ -6,7 +6,7 @@ Este proyecto implementa una solución de ingeniería de datos end-to-end basada
 
 El presente proyecto cumple a cabalidad con todos los requerimientos solicitados en el documento de evaluación. Se desarrollaron las dos tuberías de datos exigidas, orquestadas y automatizadas. Adicional al código fuente de la infraestructura, se adjunta un Jupyter Notebook y evidencia fotográfica (capturas de pantalla) que permiten validar la correcta ejecución de los procesos, el levantamiento de los servicios y la integridad de los datos en la base de datos. Asimismo, se incluye el diccionario de datos oficial proporcionado por la TLC (`dictionary/data_dictionary_trip_records_yellow.pdf`), el cual fue utilizado como referencia estricta para la construcción, tipificación y estandarización de las dimensiones del modelo.
 
----
+
 
 ## Complejidad Técnica e Ingesta Masiva
 
@@ -20,7 +20,7 @@ Para lograr la carga exitosa y estable de **801,553,240 registros** en la base d
 
 El análisis exploratorio previo —documentado en el Jupyter Notebook— fue fundamental para detectar estas inconsistencias de esquema y anomalías de calidad (fechas con año 2088, distancias negativas) antes de diseñar los filtros de limpieza.
 
----
+
 
 ## Tecnologías Utilizadas
 
@@ -33,7 +33,7 @@ El análisis exploratorio previo —documentado en el Jupyter Notebook— fue fu
 | Lenguaje (Extracción) | Python (Pandas, PyArrow, FastParquet, SQLAlchemy) |
 | Lenguaje (Transformación) | SQL nativo (PL/pgSQL) |
 
----
+
 
 ## Estructura del Repositorio
 
@@ -76,7 +76,7 @@ pset-2/
     └── cantidad_datos_pgadmin.png  # Conteo total de registros
 ```
 
----
+
 
 ## Instrucciones de Despliegue y Ejecución
 
@@ -108,7 +108,7 @@ pset-2/
 4. **Ejecutar los pipelines** desde la interfaz de Mage.ai en el siguiente orden:
    - Ejecutar el pipeline `data_raw`. Al completarse exitosamente, el trigger event-driven lanzará automáticamente el pipeline `data_clean`.
 
----
+
 
 ## Estructura de Pipelines (Orquestación)
 
@@ -139,7 +139,7 @@ dim_location.sql      ──┘
 - Las dimensiones se construyen en paralelo con valores controlados y estandarizados según el diccionario de datos oficial.
 - `fact_trips.sql` aplica tipificación estricta, filtra registros con anomalías lógicas (distancias negativas o nulas, fechas fuera del rango 2015-2025) y calcula la duración del viaje en minutos.
 
----
+
 
 ## Modelo Dimensional
 
@@ -186,7 +186,7 @@ La capa analítica final (`clean`) está estructurada bajo un esquema de estrell
 
 Dimensión conformada que centraliza y unifica los identificadores de zonas de origen (`PULocationID`) y destino (`DOLocationID`) en una sola tabla de referencia.
 
----
+
 
 ## Evidencia de Ejecución
 
@@ -196,7 +196,7 @@ La carpeta `screenshots/` contiene 15 capturas de pantalla que documentan:
 - La correcta creación y contenido de cada tabla dimensional y de hechos, visualizadas tanto desde Mage.ai como desde pgAdmin 4.
 - El conteo total de registros cargados en la base de datos (`cantidad_datos_pgadmin.png`).
 
----
+
 
 ## Análisis Exploratorio (Notebook)
 
